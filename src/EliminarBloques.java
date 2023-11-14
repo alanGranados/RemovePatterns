@@ -21,6 +21,9 @@ public class EliminarBloques  {
 
         try {
             eliminarBloques(path);
+            eliminarLineasConPatron(filePath, " ms,");
+            eliminarSaltosDeLineaMultiples(filePath);
+            quitarEspaciosAlInicio(filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,6 +59,60 @@ public class EliminarBloques  {
         Files.write(Paths.get(filePath), lines);
 
         System.out.println("Bloques eliminados con éxito.");
+    }
+    public static void eliminarLineasConPatron(String filePath, String patron) throws IOException {
+        // Lee todas las líneas del archivo
+        List<String> lines = Files.readAllLines(Paths.get(filePath));
+
+        // Itera sobre las líneas y elimina las que contienen el patrón
+        Iterator<String> iterator = lines.iterator();
+        while (iterator.hasNext()) {
+            String line = iterator.next();
+            if (line.contains(patron)) {
+                iterator.remove();
+            }
+        }
+
+        // Guarda las líneas filtradas en el archivo
+        Files.write(Paths.get(filePath), lines);
+
+        System.out.println("Líneas con el patrón '" + patron + "' eliminadas con éxito.");
+    }
+    public static void eliminarSaltosDeLineaMultiples(String filePath) throws IOException {
+        // Lee todas las líneas del archivo
+        List<String> lines = Files.readAllLines(Paths.get(filePath));
+
+        // Itera sobre las líneas y elimina saltos de línea múltiples
+        Iterator<String> iterator = lines.iterator();
+        while (iterator.hasNext()) {
+            String line = iterator.next();
+            if (line.trim().isEmpty()) {
+                // Si es una línea vacía, revisa las siguientes líneas
+                while (iterator.hasNext() && iterator.next().trim().isEmpty()) {
+                    iterator.remove();
+                }
+            }
+        }
+
+        // Guarda las líneas filtradas en el archivo
+        Files.write(Paths.get(filePath), lines);
+
+        System.out.println("Saltos de línea múltiples eliminados con éxito.");
+    }
+
+    public static void quitarEspaciosAlInicio(String filePath) throws IOException {
+        // Lee todas las líneas del archivo
+        List<String> lines = Files.readAllLines(Paths.get(filePath));
+
+        // Itera sobre las líneas y quita espacios y tabulaciones al inicio
+        for (int i = 0; i < lines.size(); i++) {
+            lines.set(i, lines.get(i).replaceAll("^\\s+", ""));
+        }
+
+        // Guarda las líneas sin espacios al inicio en el archivo
+        Files.write(Paths.get(filePath), lines);
+
+        System.out.println("Espacios y tabulaciones al inicio eliminados con éxito.");
     }
 
 }
