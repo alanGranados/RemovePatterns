@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 // then press Enter. You can now see whitespace characters in your code.
 public class EliminarBloques  {
     public static void main(String[] args) {
-        String path = "C:/Users/alan_/Documents/TrackerDocuments/document.txt";
+        //String path = "C:/Users/alan_/Documents/TrackerDocuments/document.txt";
         if (args.length != 1) {
             System.out.println("Uso: java EliminarBloques <ruta_del_archivo>");
             System.exit(1);
@@ -20,7 +20,7 @@ public class EliminarBloques  {
         String filePath = args[0];
 
         try {
-            eliminarBloques(path);
+            eliminarBloques(filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,7 +36,7 @@ public class EliminarBloques  {
         String formattedDate = currentDate.format(formatter);*/
 
         // Construye la cadena de búsqueda
-        String searchString = "2023-11-10T";
+        String searchString = "2023-11-13T";
 
         // Itera sobre las líneas y elimina las coincidencias junto con las siguientes tres líneas
         Iterator<String> iterator = lines.iterator();
