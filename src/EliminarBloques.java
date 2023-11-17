@@ -10,6 +10,8 @@ public class EliminarBloques  {
     public static void main(String[] args) {
         MetodosLimpieza metodosLimpieza = new MetodosLimpieza();
         //String filePath = "C:/Users/alan.granados/Documents/TrakcerDocuments/document.txt";
+        //String filePath = "C:/Users/alan_/Documents/TrackerDocuments/document.txt";
+        //Aqui va la direccion del archivo
         String filePath = "C:/Users/alan_/Documents/TrackerDocuments/document.txt";
         try {
             metodosLimpieza.eliminarBloques(filePath);
@@ -17,7 +19,6 @@ public class EliminarBloques  {
             metodosLimpieza.eliminarSaltosDeLineaMultiples(filePath);
             metodosLimpieza.quitarEspaciosAlInicio(filePath);
             metodosLimpieza.encontrarBloquesRepetidos(filePath);
-            //encontrarBloquesRepetidos(filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
